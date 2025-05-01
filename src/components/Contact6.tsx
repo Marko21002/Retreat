@@ -118,7 +118,7 @@ export const Contact6 = (props: Contact6Props) => {
                 id="firstName"
                 value={firstNameInput}
                 onChange={(e) => setFirstNameInput(e.target.value)}
-                className="border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20"
+                className="border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20 bg-gray-50"
               />
             </div>
 
@@ -131,7 +131,7 @@ export const Contact6 = (props: Contact6Props) => {
                 id="lastName"
                 value={lastNameInput}
                 onChange={(e) => setLastNameInput(e.target.value)}
-                className="border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20"
+                className="border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20 bg-gray-50"
               />
             </div>
           </div>
@@ -146,7 +146,7 @@ export const Contact6 = (props: Contact6Props) => {
                 id="email"
                 value={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
-                className="border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20"
+                className="border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20 bg-gray-50"
               />
             </div>
 
@@ -159,7 +159,7 @@ export const Contact6 = (props: Contact6Props) => {
                 id="phone"
                 value={phoneInput}
                 onChange={(e) => setPhoneInput(e.target.value)}
-                className="border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20"
+                className="border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20 bg-gray-50"
               />
             </div>
           </div>
@@ -167,7 +167,7 @@ export const Contact6 = (props: Contact6Props) => {
           <div className="grid w-full items-center">
             <Label className="mb-2 text-[#64625B] font-medium">Event Type</Label>
             <Select onValueChange={setSelectedEventType}>
-              <SelectTrigger className="border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20">
+              <SelectTrigger className="border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20 bg-gray-50">
                 <SelectValue placeholder="Select event type..." />
               </SelectTrigger>
               <SelectContent>
@@ -183,7 +183,7 @@ export const Contact6 = (props: Contact6Props) => {
           <div className="grid w-full items-center">
             <Label className="mb-2 text-[#64625B] font-medium">Estimated Number of Guests</Label>
             <Select onValueChange={setGuestCount}>
-              <SelectTrigger className="border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20">
+              <SelectTrigger className="border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20 bg-gray-50">
                 <SelectValue placeholder="Select guest count..." />
               </SelectTrigger>
               <SelectContent>
@@ -203,7 +203,7 @@ export const Contact6 = (props: Contact6Props) => {
             <Textarea
               id="message"
               placeholder="Tell us about your event requirements..."
-              className="min-h-[11.25rem] overflow-auto border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20"
+              className="min-h-[11.25rem] overflow-auto border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20 bg-gray-50"
               value={messageInput}
               onChange={(e) => setMessageInput(e.target.value)}
             />
