@@ -44,7 +44,7 @@ export const Contact1 = (props: Contact1Props) => {
             <Label htmlFor="name" className="mb-2">
               Name
             </Label>
-            <Input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+            <Input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} className="ring-1 ring-gray-300 focus:ring-2 focus:ring-primary" />
           </div>
           <div className="grid w-full items-center">
             <Label htmlFor="email" className="mb-2">
@@ -55,6 +55,7 @@ export const Contact1 = (props: Contact1Props) => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="ring-1 ring-gray-300 focus:ring-2 focus:ring-primary"
             />
           </div>
           <div className="grid w-full items-center">
@@ -64,7 +65,7 @@ export const Contact1 = (props: Contact1Props) => {
             <Textarea
               id="message"
               placeholder="Type your message..."
-              className="min-h-[11.25rem] overflow-auto"
+              className="min-h-[11.25rem] overflow-auto ring-1 ring-gray-300 focus:ring-2 focus:ring-primary"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
