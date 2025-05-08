@@ -5,6 +5,7 @@ import type { ButtonProps } from "@relume_io/relume-ui";
 import { useState, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { IoChevronForwardOutline, IoChevronBackOutline } from "react-icons/io5";
+import React from "react";
 
 type ImageProps = {
   src: string;
@@ -121,13 +122,29 @@ export const Portfolio16 = (props: Portfolio16Props) => {
 
 const Venue: React.FC<VenueProps> = ({ title, description, images, capacity, pricing, keyPoints }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  // Preload images for smoother transitions
+  React.useEffect(() => {
+    // Preload all images
+    images.forEach(image => {
+      const img = new Image();
+      img.src = image.src;
+    });
+  }, [images]);
 
   const handleNext = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    setTimeout(() => setIsAnimating(false), 400); // Match transition duration
   };
 
   const handlePrev = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
     setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setTimeout(() => setIsAnimating(false), 400); // Match transition duration
   };
 
   return (
@@ -136,22 +153,26 @@ const Venue: React.FC<VenueProps> = ({ title, description, images, capacity, pri
         <div 
           className="relative w-full pt-[75%] shadow-md rounded-sm overflow-hidden transition-transform duration-500 hover:scale-[1.02]"
         >
-          <AnimatePresence mode="wait">
+          <div className="absolute inset-0 bg-[#64625B]/10">
+            {/* Background placeholder to prevent white flash */}
+          </div>
+          
+          <AnimatePresence initial={false}>
             <motion.div
               key={currentIndex}
               className="absolute inset-0"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.3 }}
             >
               <motion.img
                 src={images[currentIndex].src}
-                alt={images[currentIndex].alt}
+                alt={images[currentIndex].alt || title}
                 className="absolute inset-0 size-full object-cover"
-                initial={{ scale: 1.05 }}
+                initial={{ scale: 1.02 }}
                 animate={{ scale: 1 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.4 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#64625B]/30 to-transparent"></div>
             </motion.div>
@@ -344,24 +365,24 @@ const venue4 = {
 };
 
 const venue5 = {
-  title: "Meditation Studio",
+  title: "Room for Meditation",
   description:
     "A serene, minimalist space designed for yoga, meditation, and wellness retreats. Features bamboo flooring and soft natural lighting.",
   images: [
     {
-      src: "/hero/Raum Provence.jpeg",
-      alt: "Meditation Studio",
+      src: "/meditation/_NAG4374-HDR-Pano.jpg",
+      alt: "Room for Meditation",
     },
     {
-      src: "/hero/20180115-Capture0028-HDR.jpg",
+      src: "/meditation/_NAG4451.jpeg",
       alt: "Meditation Session Setup",
     },
     {
-      src: "/hero/_NAG5331-HDR.jpeg",
-      alt: "Studio Detail",
+      src: "/meditation/_NAG4463.jpeg",
+      alt: "Room Detail",
     }
   ],
-  capacity: "Up to 30 people",
+  capacity: "20-30 people",
   pricing: "65 sq. m",
   keyPoints: [
     { label: "Serene environment" },
@@ -373,63 +394,63 @@ const venue5 = {
   ],
 };
 
-const venue6 = {
-  title: "Cellar Wine Room",
+const venue7 = {
+  title: "Tea House",
   description:
-    "Our atmospheric medieval wine cellar offers a unique setting for intimate dinners, wine tastings, and exclusive gatherings in a historic setting.",
+    "A cozy Chinese-style venue with a fireplace, offering a warm and harmonious atmosphere. It's the ideal setting for traditional tea ceremonies and intimate gatherings.",
   images: [
     {
-      src: "/hero/castle2.jpg",
-      alt: "Wine Cellar",
+      src: "/tea/_NAG4264-HDR-Pano.jpg",
+      alt: "Tea House",
     },
     {
-      src: "/hero/castle.jpg",
-      alt: "Wine Tasting Setup",
+      src: "/tea/_NAG4306.jpg",
+      alt: "Tea House Interior",
     },
     {
-      src: "/hero/Amphitheater.jpg",
-      alt: "Cellar Entrance",
+      src: "/tea/20180115-Capture0028-HDR (1).jpg",
+      alt: "Tea Ceremony Setup",
     }
   ],
-  capacity: "Up to 20 people",
-  pricing: "50 sq. m",
+  capacity: "Up to 25 guests",
+  pricing: "75 sq. m",
   keyPoints: [
-    { label: "Authentic medieval atmosphere" },
+    { label: "Chinese-style design" },
+    { label: "Cozy fireplace" },
+    { label: "Warm, harmonious atmosphere" },
+    { label: "Traditional tea ceremonies" },
     { label: "Intimate gathering space" },
-    { label: "Perfect for wine tastings" },
-    { label: "Historic stone architecture" },
-    { label: "Exclusive dining setup" },
-    { label: "Atmospheric lighting" },
+    { label: "Authentic experience" },
   ],
 };
 
-const venue7 = {
-  title: "Conference Center",
+const venue8 = {
+  title: "Restaurant \"Zum Weißen Ritter\"",
   description:
-    "Our modern conference center combines elegant design with state-of-the-art technology for corporate meetings, seminars, and workshops.",
+    "An authentic restaurant styled in a historic knightly theme, where modern comfort blends seamlessly with the spirit of centuries past. It's the perfect venue for celebrations, workshops, and wine tastings, which can be held in the cozy wine cellar beneath the restaurant.",
   images: [
     {
-      src: "/hero/20180115-Capture0028-HDR.jpg",
-      alt: "Conference Center",
+      src: "/restaurant/_NAG4307-Pano.jpg",
+      alt: "Restaurant Zum Weißen Ritter",
     },
     {
-      src: "/hero/20180115-Capture0033-HDR-Pano.jpg",
-      alt: "Conference Setup",
+      src: "/restaurant/_NAG4310 (1).jpg",
+      alt: "Restaurant Interior",
     },
     {
-      src: "/hero/_NAG4443-Pano.jpeg",
-      alt: "Technology Station",
+      src: "/restaurant/20180115-Capture0003-HDR-Pano.jpg",
+      alt: "Restaurant Dining Area",
     }
   ],
-  capacity: "Up to 80 people",
-  pricing: "150 sq. m",
+  capacity: "Up to 80 guests",
+  pricing: "200 sq. m",
   keyPoints: [
-    { label: "Elegant modern design" },
-    { label: "State-of-the-art technology" },
-    { label: "Corporate meeting setup" },
-    { label: "Professional presentation systems" },
-    { label: "Versatile workshop space" },
-    { label: "High-speed connectivity" },
+    { label: "Historic knightly theme" },
+    { label: "Modern comfort amenities" },
+    { label: "Perfect for celebrations" },
+    { label: "Workshop-friendly space" },
+    { label: "Wine cellar for tastings" },
+    { label: "Authentic atmosphere" },
   ],
 };
 
@@ -437,7 +458,7 @@ export const Portfolio16Defaults: Props = {
   tagline: "Our Venues",
   heading: "Extraordinary Spaces for Unforgettable Events",
   description: "Discover our collection of stunning, versatile venues perfect for weddings, corporate events, retreats, and cultural gatherings. Each space offers unique character and amenities to make your event truly special.",
-  venues: [venue, venue2, venue3, venue4, venue5, venue6, venue7],
+  venues: [venue3, venue8, venue5, venue2, venue4, venue, venue7],
   button: {
     title: "See all spaces",
     variant: "primary" as const,

@@ -7,6 +7,8 @@ import { Navbar3 } from "@/components/Navbar3";
 import { Contact6 } from "@/components/Contact6";
 import { Cta25 } from "@/components/Cta25";
 import { Contact1 } from "@/components/contact1";
+import { Blog40 } from "@/components/blog40";
+import { Layout22 } from "@/components/layout22";
 export default async function Home() {
   return (
     <div>
@@ -14,8 +16,9 @@ export default async function Home() {
       <EventItemHeader8/>  
       <Portfolio16 />
       <Cta25/>
+      {/* <Blog40/> */}
+      <Layout22/>
       <Contact6/>
-      <Contact1/>
       <Footer1 />
     </div>
   );
