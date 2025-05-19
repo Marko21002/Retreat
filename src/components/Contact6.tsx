@@ -122,7 +122,7 @@ export const Contact6 = (props: Contact6Props) => {
               <BiCheckCircle className="text-[#d4b98c] text-3xl" />
               <div>
                 <h3 className="text-lg font-serif font-semibold text-[#64625B]">Thank You!</h3>
-                <p className="text-[#64625B]/80">Your inquiry has been successfully submitted. We'll get back to you soon.</p>
+                <p className="text-[#64625B]/80">Your inquiry has been successfully submitted. We&apos;ll get back to you soon.</p>
               </div>
             </div>
           </div>
