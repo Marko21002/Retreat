@@ -27,11 +27,11 @@ type Props = {
   buttons: ButtonProps[];
 };
 
-export type Navbar3Props = React.ComponentPropsWithoutRef<"section"> & Partial<Props>;
+export type Navbar3DEProps = React.ComponentPropsWithoutRef<"section"> & Partial<Props>;
 
-export const Navbar3 = (props: Navbar3Props) => {
+export const Navbar3DE = (props: Navbar3DEProps) => {
   const { logo, navLinks, buttons } = {
-    ...Navbar3Defaults,
+    ...Navbar3DEDefaults,
     ...props,
   };
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -40,7 +40,6 @@ export const Navbar3 = (props: Navbar3Props) => {
   const currentLanguage = pathname.startsWith('/de') ? 'de' : 'en';
   const isMobile = useMediaQuery("(max-width: 991px)");
 
-  // Prevent scrolling when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -106,7 +105,7 @@ export const Navbar3 = (props: Navbar3Props) => {
               ) : (
                 <a
                   href={navLink.url}
-                  className="relative block py-3 text-md tracking-wide text-[#64625B] transition-colors duration-300 hover:text-[#64625B]/80 lg:px-4 lg:py-2 lg:text-base"
+                  className="relative block py-3 text-sm tracking-wide text-[#64625B] transition-colors duration-300 hover:text-[#64625B]/80 lg:px-3 lg:py-2 lg:text-sm"
                 >
                   {navLink.title}
                 </a>
@@ -144,7 +143,6 @@ export const Navbar3 = (props: Navbar3Props) => {
         <img src={logo.src} alt={logo.alt} className="h-14 w-auto md:h-16 lg:h-20" />
       </a>
       <div className="flex min-h-16 items-center justify-end gap-x-4">
-        {/* Language Switcher for Desktop and Small Mobile */}
         <div className="flex items-center border border-[#64625B]/30 rounded-md">
           <button
             onClick={toggleLanguage}
@@ -188,7 +186,7 @@ const SubMenu = ({ navLink, isMobile }: { navLink: NavLink; isMobile: boolean })
       onMouseLeave={() => !isMobile && setIsDropdownOpen(false)}
     >
       <button
-        className="flex w-full items-center justify-between gap-2 py-3 text-md tracking-wide text-[#64625B] transition-colors duration-300 hover:text-[#64625B]/80 lg:flex-none lg:justify-start lg:px-4 lg:py-2 lg:text-base"
+        className="flex w-full items-center justify-between gap-2 py-3 text-sm tracking-wide text-[#64625B] transition-colors duration-300 hover:text-[#64625B]/80 lg:flex-none lg:justify-start lg:px-3 lg:py-2 lg:text-sm"
         onClick={() => setIsDropdownOpen((prev) => !prev)}
       >
         <span>{navLink.title}</span>
@@ -229,7 +227,7 @@ const SubMenu = ({ navLink, isMobile }: { navLink: NavLink; isMobile: boolean })
               <a
                 key={index}
                 href={subMenuLink.url}
-                className="block py-3 pl-[5%] text-md tracking-wide text-[#64625B] transition-colors duration-300 hover:text-[#64625B]/80 lg:py-2 lg:pl-4 lg:pr-8 lg:text-left lg:text-base"
+                className="block py-3 pl-[5%] text-sm tracking-wide text-[#64625B] transition-colors duration-300 hover:text-[#64625B]/80 lg:py-2 lg:pl-3 lg:pr-6 lg:text-left lg:text-sm"
               >
                 {subMenuLink.title}
               </a>
@@ -241,31 +239,31 @@ const SubMenu = ({ navLink, isMobile }: { navLink: NavLink; isMobile: boolean })
   );
 };
 
-export const Navbar3Defaults: Props = {
+export const Navbar3DEDefaults: Props = {
   logo: {
     url: "#",
     src: "/logo.png",
     alt: "Schloss Thalheim Logo",
   },
   navLinks: [
-    { title: "Home", url: "#" },
+    { title: "Startseite", url: "#" },
     { title: "Venues", url: "#" },
     {
       title: "Events",
       url: "#",
       subMenuLinks: [
-        { title: "Weddings", url: "#" },
-        { title: "Corporate", url: "#" },
+        { title: "Hochzeiten", url: "#" },
+        { title: "Business", url: "#" },
         { title: "Retreats", url: "#" },
       ],
     },
-    { title: "Gallery", url: "#" },
-    { title: "Contact", url: "#" },
+    { title: "Galerie", url: "#" },
+    { title: "Kontakt", url: "#" },
   ],
   buttons: [
     {
-      title: "Book Now",
+      title: "Buchen",
       size: "sm",
     },
   ],
-};
+}; 
