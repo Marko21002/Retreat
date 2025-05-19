@@ -15,6 +15,7 @@ import {
 } from "@relume_io/relume-ui";
 import type { ButtonProps } from "@relume_io/relume-ui";
 import { BiEnvelope, BiMap, BiPhone } from "react-icons/bi";
+import { BiCheckCircle } from "react-icons/bi";
 
 type Props = {
   tagline: string;
@@ -42,19 +43,52 @@ export const Contact6DE = (props: Contact6DEProps) => {
   const [guestCount, setGuestCount] = useState("");
   const [messageInput, setMessageInput] = useState("");
   const [acceptTerms, setAcceptTerms] = useState<boolean | "indeterminate">(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log({
-      firstNameInput,
-      lastNameInput,
-      emailInput,
-      phoneInput,
-      selectedEventType,
-      guestCount,
-      messageInput,
-      acceptTerms,
-    });
+    
+    const formData = {
+      firstName: firstNameInput,
+      lastName: lastNameInput,
+      email: emailInput,
+      phone: phoneInput,
+      eventType: selectedEventType,
+      guestCount: guestCount,
+      message: messageInput,
+      terms: acceptTerms,
+    };
+
+    try {
+      const response = await fetch("https://submit-form.com/Js4n9tHHJ", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        // Clear form after successful submission
+        setFirstNameInput("");
+        setLastNameInput("");
+        setEmailInput("");
+        setPhoneInput("");
+        setSelectedEventType("");
+        setGuestCount("");
+        setMessageInput("");
+        setAcceptTerms(false);
+        setShowSuccess(true);
+        // Hide success message after 5 seconds
+        setTimeout(() => setShowSuccess(false), 5000);
+      } else {
+        throw new Error("Form submission failed");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Bei der Übermittlung des Formulars ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.");
+    }
   };
 
   const eventTypes = [
@@ -77,7 +111,20 @@ export const Contact6DE = (props: Contact6DEProps) => {
   ];
 
   return (
-    <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28 bg-white">
+    <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28 bg-white relative">
+      {showSuccess && (
+        <div className="fixed top-4 right-4 z-50 animate-fade-in">
+          <div className="bg-white rounded-lg shadow-lg p-6 border border-[#d4b98c] max-w-md">
+            <div className="flex items-center gap-4">
+              <BiCheckCircle className="text-[#d4b98c] text-3xl" />
+              <div>
+                <h3 className="text-lg font-serif font-semibold text-[#64625B]">Vielen Dank!</h3>
+                <p className="text-[#64625B]/80">Ihre Anfrage wurde erfolgreich übermittelt. Wir werden uns in Kürze bei Ihnen melden.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="container grid grid-cols-1 items-start gap-y-12 md:grid-flow-row md:grid-cols-2 md:gap-x-12 lg:grid-flow-col lg:gap-x-20 lg:gap-y-16">
         <div>
           <p className="mb-3 font-serif font-semibold md:mb-4 text-[#d4b98c] tracking-wide">{tagline}</p>
@@ -104,7 +151,11 @@ export const Contact6DE = (props: Contact6DEProps) => {
           </div>
         </div>
 
-        <form className="grid grid-cols-1 grid-rows-[auto_auto] gap-6" onSubmit={handleSubmit}>
+        <form 
+          className="grid grid-cols-1 grid-rows-[auto_auto] gap-6" 
+          onSubmit={handleSubmit}
+          action="https://submit-form.com/Js4n9tHHJ"
+        >
           <div className="grid grid-cols-2 gap-6">
             <div className="grid w-full items-center">
               <Label htmlFor="firstName" className="mb-2 text-[#64625B] font-medium">
@@ -113,6 +164,7 @@ export const Contact6DE = (props: Contact6DEProps) => {
               <Input
                 type="text"
                 id="firstName"
+                name="firstName"
                 value={firstNameInput}
                 onChange={(e) => setFirstNameInput(e.target.value)}
                 className="border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20 bg-gray-50"
@@ -126,6 +178,7 @@ export const Contact6DE = (props: Contact6DEProps) => {
               <Input
                 type="text"
                 id="lastName"
+                name="lastName"
                 value={lastNameInput}
                 onChange={(e) => setLastNameInput(e.target.value)}
                 className="border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20 bg-gray-50"
@@ -141,6 +194,7 @@ export const Contact6DE = (props: Contact6DEProps) => {
               <Input
                 type="email"
                 id="email"
+                name="email"
                 value={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
                 className="border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20 bg-gray-50"
@@ -154,6 +208,7 @@ export const Contact6DE = (props: Contact6DEProps) => {
               <Input
                 type="text"
                 id="phone"
+                name="phone"
                 value={phoneInput}
                 onChange={(e) => setPhoneInput(e.target.value)}
                 className="border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20 bg-gray-50"
@@ -163,7 +218,7 @@ export const Contact6DE = (props: Contact6DEProps) => {
 
           <div className="grid w-full items-center">
             <Label className="mb-2 text-[#64625B] font-medium">Veranstaltungstyp</Label>
-            <Select onValueChange={setSelectedEventType}>
+            <Select onValueChange={setSelectedEventType} name="eventType">
               <SelectTrigger className="border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20 bg-gray-50">
                 <SelectValue placeholder="Veranstaltungstyp auswählen..." />
               </SelectTrigger>
@@ -179,7 +234,7 @@ export const Contact6DE = (props: Contact6DEProps) => {
 
           <div className="grid w-full items-center">
             <Label className="mb-2 text-[#64625B] font-medium">Geschätzte Gästezahl</Label>
-            <Select onValueChange={setGuestCount}>
+            <Select onValueChange={setGuestCount} name="guestCount">
               <SelectTrigger className="border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20 bg-gray-50">
                 <SelectValue placeholder="Gästezahl auswählen..." />
               </SelectTrigger>
@@ -199,6 +254,7 @@ export const Contact6DE = (props: Contact6DEProps) => {
             </Label>
             <Textarea
               id="message"
+              name="message"
               placeholder="Beschreiben Sie Ihre Veranstaltungsanforderungen..."
               className="min-h-[11.25rem] overflow-auto border-[#64625B]/30 focus:border-[#64625B] focus:ring-[#64625B]/20 bg-gray-50"
               value={messageInput}
@@ -207,7 +263,13 @@ export const Contact6DE = (props: Contact6DEProps) => {
           </div>
 
           <div className="mb-3 flex items-center space-x-2 text-sm md:mb-4">
-            <Checkbox id="terms" checked={acceptTerms} onCheckedChange={setAcceptTerms} className="text-[#64625B] border-[#64625B]/50 focus:ring-[#64625B]/20" />
+            <Checkbox 
+              id="terms" 
+              name="terms"
+              checked={acceptTerms} 
+              onCheckedChange={setAcceptTerms} 
+              className="text-[#64625B] border-[#64625B]/50 focus:ring-[#64625B]/20" 
+            />
             <Label htmlFor="terms" className="cursor-pointer text-[#64625B]/80">
               Ich akzeptiere die{" "}
               <a className="text-[#d4b98c] underline" href="#">
@@ -219,6 +281,7 @@ export const Contact6DE = (props: Contact6DEProps) => {
           <div>
             <Button 
               {...button} 
+              type="submit"
               className="w-auto px-5 sm:px-7 py-2.5 sm:py-3 transition-all duration-300 font-serif tracking-wider text-sm shadow-sm hover:shadow bg-[#64625B] text-white hover:bg-[#64625B]/90 border border-[#64625B]"
             >
               {button.title}
