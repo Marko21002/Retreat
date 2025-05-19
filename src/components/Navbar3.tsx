@@ -19,8 +19,6 @@ type NavLink = {
   subMenuLinks?: NavLink[];
 };
 
-type Language = "en" | "de";
-
 type Props = {
   logo: ImageProps;
   navLinks: NavLink[];
