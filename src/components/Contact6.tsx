@@ -114,7 +114,7 @@ export const Contact6 = (props: Contact6Props) => {
   ];
 
   return (
-    <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28 bg-white relative">
+    <section id="contact" className="px-[5%] py-16 md:py-24 lg:py-28 bg-white relative">
       {showSuccess && (
         <div className="fixed top-4 right-4 z-50 animate-fade-in">
           <div className="bg-white rounded-lg shadow-lg p-6 border border-[#d4b98c] max-w-md">

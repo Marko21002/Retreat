@@ -41,6 +41,9 @@ export function EventItemHeader8() {
             <Button 
               title="Book Now" 
               className="px-8 py-3 bg-[#64625B] text-white hover:bg-[#64625B]/90 border border-[#64625B] font-serif tracking-wider text-sm shadow-sm hover:shadow transition-all duration-300"
+              onClick={() => {
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               Book Your Event
             </Button>

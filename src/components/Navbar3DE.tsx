@@ -262,6 +262,9 @@ export const Navbar3DEDefaults: Props = {
     {
       title: "Buchen",
       size: "sm",
+      onClick: () => {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      }
     },
   ],
 }; 

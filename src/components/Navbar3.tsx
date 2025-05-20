@@ -264,6 +264,9 @@ export const Navbar3Defaults: Props = {
     {
       title: "Book Now",
       size: "sm",
+      onClick: () => {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      }
     },
   ],
 };
