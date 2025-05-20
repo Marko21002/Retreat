@@ -48,7 +48,7 @@ export function Footer1() {
               <li>Thalheim 1</li>
               <li>3141 Kapelln, Austria</li>
               <li>+43 2275 5575</li>
-              <li>info@schloss-thalheim.at</li>
+              <li>reservierung@schlossthalheim.at</li>
             </ul>
           </div>
           

@@ -297,7 +297,7 @@ export const Contact6DEDefaults: Props = {
   tagline: "Kontakt",
   heading: "Planen Sie Ihre perfekte Veranstaltung",
   description: "Kontaktieren Sie uns, um die Möglichkeiten für Ihre nächste Veranstaltung im Schloss Thalheim zu erkunden. Unser Team hilft Ihnen, ein unvergessliches Erlebnis in unserem historischen Veranstaltungsort zu schaffen.",
-  email: "events@schlossthalheim.at",
+  email: "reservierung@schlossthalheim.at",
   phone: "+43 2274 7844",
   address: "Schloss Thalheim, Thalheim 1, 3141 Kapelln, Österreich",
   button: { title: "Anfrage senden" },
