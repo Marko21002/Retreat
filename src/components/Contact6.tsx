@@ -141,11 +141,11 @@ export const Contact6 = (props: Contact6Props) => {
           <div className="grid grid-cols-1 gap-4 py-2">
             <div className="flex items-center gap-4">
               <BiEnvelope className="size-6 flex-none text-[#64625B]" />
-              <p className="text-[#64625B]">{email}</p>
+              <a href={`mailto:${email}`} className="text-[#64625B] underline">{email}</a>
             </div>
             <div className="flex items-center gap-4">
               <BiPhone className="size-6 flex-none text-[#64625B]" />
-              <p className="text-[#64625B]">{phone}</p>
+              <a href={`tel:${phone}`} className="text-[#64625B] underline">{phone}</a>
             </div>
             <div className="flex items-center gap-4">
               <BiMap className="size-6 flex-none text-[#64625B]" />
@@ -300,8 +300,8 @@ export const Contact6Defaults: Props = {
   tagline: "Get in Touch",
   heading: "Plan Your Perfect Event",
   description: "Contact us to explore the possibilities for your next event at Schloss Thalheim. Our team will help you create an unforgettable experience in our historic venue.",
-  email: "reservierung@schlossthalheim.at",
-  phone: "+43 2274 7844",
+  email: "event@schlossthalheim.at",
+  phone: "+43 676 842060405",
   address: "Schloss Thalheim, Thalheim 1, 3141 Kapelln, Austria",
   button: { title: "Submit Inquiry" },
 };

@@ -47,8 +47,8 @@ export function Footer1() {
             <ul className="space-y-2 text-sm text-[#64625B]/80 font-sans">
               <li>Thalheim 1</li>
               <li>3141 Kapelln, Austria</li>
-              <li>+43 2275 5575</li>
-              <li>reservierung@schlossthalheim.at</li>
+              <li><a href="tel:+43676842060405" className="underline">+43 676 842060405</a></li>
+              <li><a href="mailto:event@schlossthalheim.at" className="underline">event@schlossthalheim.at</a></li>
             </ul>
           </div>
           

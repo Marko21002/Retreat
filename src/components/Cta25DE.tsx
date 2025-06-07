@@ -55,6 +55,6 @@ export const Cta25DEDefaults: Props = {
   heading: "Entdecken Sie unsere exklusiven Räume",
   description:
     "Wir bieten viele weitere exklusive Bereiche, die auf unserer Website nicht vorgestellt werden. Kontaktieren Sie unseren Manager für personalisierte Empfehlungen und um zu besprechen, wie wir Ihre spezifischen Event-Anforderungen erfüllen können.",
-  phoneNumber: "+43 1234 567890",
-  whatsappLink: "https://wa.me/431234567890",
+  phoneNumber: "+43 676 842060405",
+  whatsappLink: "https://wa.me/43676842060405",
 }; 
